@@ -1,0 +1,66 @@
+ <!DOCTYPE html>
+<html>
+	<head>
+		<meta charset=utf-8 />
+		<title>Schiffsglocke</title>
+		
+        <script>
+			var jetzt = new Date();
+			var ton1 = new Audio("Glockeläute1.wav"); 
+			var ton2 = new Audio("Glockeläute2.wav"); 
+			
+            hour = jetzt.getHours() % 4; 
+			minutes = Math.floor(jetzt.getMinutes() / 30);
+			
+			
+			if(hour == 0 && minutes == 0) {
+				consolebell(8);
+				soundbell(8);
+			}
+			
+			else{
+				consolebell(hour * 2 + minutes); 
+				soundbell(hour * 2 + minutes); 
+			}
+			
+			
+			function soundbell(number){
+				while(number > 1){
+					ton2.play(); 
+					number -= 2;
+				
+				}
+			
+				if(number == 1){
+					ton1.play(); 
+				}
+			}
+			
+			
+			function consolebell(number){
+				var message = "";
+				
+                while (number > 1){
+					message += "•• ";
+					number -= 2;
+				}
+				if (number == 1){
+					message += "•";
+				}
+				console.log(message);
+			}
+			
+			function sleep(milliseconds){
+				var start = new Date().getTime();
+				for (var i = 0; i < 1e7; i++){
+					if ((new Date().getTime() - start) > milliseconds){
+						break;
+					}
+			  }
+			}
+			
+			
+		</script> 
+	</head>
+	
+</html>
